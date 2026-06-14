@@ -6,7 +6,11 @@
 ## 🚀 Deploy คลิกเดียว
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nustanakritwithai/Udomsukflim)
 
-กดปุ่มด้านบน → ล็อกอิน Render → กด **Apply** (Render จะอ่าน `render.yaml` เอง) เสร็จได้ URL `https://udomsukfilm53.onrender.com` พร้อม HTTPS อัตโนมัติ
+กดปุ่มด้านบน → ล็อกอิน Render → กด **Apply** (Render จะอ่าน `render.yaml` เอง) ได้ URL `*.onrender.com` พร้อม HTTPS อัตโนมัติ
+
+- **โดเมนจริง (canonical):** `https://udomsuk-film.com/` — schema/canonical/sitemap ทุกจุดชี้มาที่นี่
+- **เดโม/สำรอง:** `https://udomsukflim.onrender.com/` — ใช้พรีวิวก่อน (canonical ชี้กลับโดเมนจริง Google จึงไม่ index ซ้ำ)
+- ขั้นต่อไป: ที่ Render → **Settings → Custom Domains** เพิ่ม `udomsuk-film.com` แล้วตั้ง DNS ตามที่ Render บอก เพื่อให้โดเมนจริงออนไลน์
 
 ## โครงสร้างไฟล์
 ```
@@ -48,7 +52,7 @@ images/           ← รูปจริงของร้าน (ดูคำ�
 ## ⚠️ ต้องแก้ก่อนปล่อยจริง (ค่า placeholder)
 แก้ใน `index.html` (และไฟล์ SEO) ให้ตรงของจริง:
 
-1. **โดเมน** — ปัจจุบันใช้ `https://udomsukfilm53.com` ใน canonical, OG, schema, sitemap, robots
+1. **โดเมน** — ปัจจุบันใช้ `https://udomsuk-film.com` ใน canonical, OG, schema, sitemap, robots
    ถ้าใช้โดเมนอื่น ให้แทนที่ทุกจุด
 2. **ลิงก์ Line** — ปัจจุบัน `https://line.me/R/ti/p/~@udomsukfilm53`
    เปลี่ยนเป็น Line OA ID / ลิงก์จริงของร้าน
