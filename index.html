@@ -599,6 +599,69 @@
     .heat-arrow{transform:rotate(90deg)}
   }
 
+  /* Phase 3.1: 3D trust & proof cards */
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;perspective:1400px}
+  .trust-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+  .trust-card h3{color:var(--navy);font-size:1.04rem;font-weight:800}
+  .trust-card p{color:var(--muted);font-size:.92rem;flex:1;margin:0}
+  .trust-card .btn{align-self:flex-start;font-size:.86rem;padding:9px 16px}
+  @media (hover:hover) and (pointer:fine){
+    .trust-card{transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease}
+    .trust-card:hover{transform:translateY(-6px) rotateX(2deg);
+      box-shadow:0 22px 44px rgba(11,61,99,.18);border-color:rgba(31,127,192,.35)}
+  }
+
+  /* Phase 3.2: "เลือกประเภทงานของคุณ" interactive selector */
+  .job-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .job-card{display:block;background:var(--card);border:1px solid var(--border);
+    border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+  .job-card h3{color:var(--navy);font-size:1rem;font-weight:800;margin-bottom:4px}
+  .job-card p{color:var(--muted);font-size:.88rem;margin:0}
+  @media (hover:hover) and (pointer:fine){
+    .job-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(11,61,99,.16);
+      border-color:rgba(31,127,192,.35)}
+  }
+  .job-card:active,.job-card.active{border-color:var(--blue);box-shadow:0 0 0 3px rgba(31,127,192,.18)}
+
+  /* Phase 3.3: 3D process timeline */
+  .timeline{display:flex;flex-direction:column;gap:16px;margin:24px 0;counter-reset:step}
+  .timeline .step{position:relative;background:var(--card);border:1px solid var(--border);
+    border-radius:var(--radius);padding:16px 18px 16px 62px;box-shadow:var(--shadow)}
+  .timeline .step::before{counter-increment:step;content:counter(step);position:absolute;
+    left:16px;top:16px;width:32px;height:32px;border-radius:50%;background:var(--navy);
+    color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .timeline .step h3{color:var(--navy);font-size:1rem;font-weight:800;margin-bottom:4px}
+  .timeline .step p{color:var(--muted);font-size:.92rem;margin:0}
+  @media (hover:hover) and (pointer:fine){
+    .timeline .step{transition:transform .25s ease, box-shadow .25s ease}
+    .timeline .step:hover{transform:translateX(6px);box-shadow:0 14px 30px rgba(11,61,99,.16)}
+  }
+
+  /* Phase 3.4: comparison table (highlight-only JS, full content always visible) */
+  .compare-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .compare-filters .btn{font-size:.86rem;padding:8px 16px}
+  .compare-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .compare-table{min-width:760px}
+  .compare-table tbody tr{transition:background-color .2s ease}
+  .compare-table tbody tr.active{background:#eef4f9}
+
+  /* Phase 3.6: review proof block */
+  .review-pending{background:var(--card);border:1px dashed var(--border);border-radius:var(--radius);
+    padding:24px;text-align:center;color:var(--muted);margin-top:24px}
+  .review-pending h3{color:var(--navy);margin-bottom:6px}
+  .review-pending p{margin-bottom:14px}
+
+  @media(max-width:860px){
+    .trust-grid{grid-template-columns:1fr 1fr}
+    .job-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:480px){
+    .trust-grid{grid-template-columns:1fr}
+    .job-grid{grid-template-columns:1fr}
+  }
+
   /* Sticky mobile bar */
   .sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;
     grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.92);
@@ -792,6 +855,36 @@
   </div>
 </section>
 
+<!-- ===== Section 3B: 3D TRUST & PROOF (Phase 3.1) ===== -->
+<section id="trust">
+  <div class="wrap">
+    <h2>ทำไมลูกค้าในย่านศรีนครินทร์ 53 ถึงเลือกอุดมสุขฟิล์ม</h2>
+    <p class="sub">เหตุผลที่ลูกค้าในย่านศรีนครินทร์ 53 อุดมสุข บางนา อ่อนนุช และพัฒนาการ เลือกใช้บริการติดฟิล์มรถยนต์และฟิล์มกระจกบ้าน คอนโด อาคารกับอุดมสุขฟิล์มศรีนครินทร์53</p>
+    <div class="trust-grid">
+      <article class="trust-card">
+        <h3>มีหน้าร้านจริง ศรีนครินทร์ 53</h3>
+        <p>ลูกค้าสามารถเปิดแผนที่ เดินทางมาที่ร้าน และติดต่อร้านได้จริงบนถนนศรีนครินทร์ 53</p>
+        <a class="btn btn-outline" href="https://maps.google.com/?q=อุดมสุขฟิล์มศรีนครินทร์53" target="_blank" rel="noopener" data-ga-event="trust_maps_click">🗺️ เปิดแผนที่</a>
+      </article>
+      <article class="trust-card">
+        <h3>รับทั้งรถยนต์ บ้าน คอนโด อาคาร</h3>
+        <p>ให้บริการติดฟิล์มครบทั้งรถยนต์และกระจกอาคารในพื้นที่ใกล้เคียง ทั้งบ้าน คอนโด อาคาร และสำนักงาน</p>
+        <a class="btn btn-line" href="https://line.me/R/ti/p/~@udomsukfilm53" target="_blank" rel="noopener" data-ga-event="trust_line_click">💬 ทัก Line ประเมินราคา</a>
+      </article>
+      <article class="trust-card">
+        <h3>ส่งรูปเพื่อประเมินราคาได้</h3>
+        <p>ลูกค้าสามารถส่งรุ่นรถหรือรูปกระจกทาง Line เพื่อประเมินราคาเบื้องต้นก่อนเข้ารับบริการ</p>
+        <a class="btn btn-line" href="https://line.me/R/ti/p/~@udomsukfilm53" target="_blank" rel="noopener" data-ga-event="trust_line_click">📷 ส่งรูปประเมินราคา</a>
+      </article>
+      <article class="trust-card">
+        <h3>เน้นคำแนะนำตามการใช้งานจริง</h3>
+        <p>เลือกฟิล์มตามงบประมาณ ความเข้ม การกันร้อน และการใช้งานกลางวัน/กลางคืนของลูกค้าแต่ละคน</p>
+        <a class="btn btn-call" href="tel:0863704378" data-ga-event="trust_call_click">📞 โทรสอบถาม</a>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ===== Section 4: SERVICES (รถยนต์) ===== -->
 <section id="services">
   <div class="wrap">
@@ -876,6 +969,40 @@
   </div>
 </section>
 
+<!-- ===== Interactive: เลือกประเภทงานของคุณ (Phase 3.2) ===== -->
+<section id="job-select">
+  <div class="wrap">
+    <h2>เลือกประเภทงานติดฟิล์มของคุณ</h2>
+    <p class="sub">เลือกประเภทงานที่ตรงกับความต้องการ เพื่อไปยังรายละเอียดบริการที่เกี่ยวข้องโดยตรง</p>
+    <div class="job-grid">
+      <a class="job-card" href="#services" data-ga-event="job_select_car">
+        <h3>🚗 รถยนต์</h3>
+        <p>เหมาะสำหรับลูกค้าที่ต้องการติดฟิล์มรถยนต์รอบคัน ฟิล์มเซรามิก หรือลอกฟิล์มเก่าติดใหม่</p>
+      </a>
+      <a class="job-card" href="#building" data-ga-event="job_select_house">
+        <h3>🏠 บ้าน</h3>
+        <p>เหมาะสำหรับบ้านที่ต้องการลดความร้อน ลดแสงจ้า และเพิ่มความเป็นส่วนตัว</p>
+      </a>
+      <a class="job-card" href="#building" data-ga-event="job_select_condo">
+        <h3>🏢 คอนโด</h3>
+        <p>เหมาะสำหรับห้องที่โดนแดด กระจกบานใหญ่ หรืออยากลดความร้อนโดยไม่เปลี่ยนโครงสร้างห้อง</p>
+      </a>
+      <a class="job-card" href="#building" data-ga-event="job_select_office">
+        <h3>🏬 อาคาร / สำนักงาน</h3>
+        <p>เหมาะสำหรับพื้นที่ทำงาน ร้านค้า หรืออาคารที่ต้องการลดภาระแอร์และลดแสงสะท้อน</p>
+      </a>
+      <a class="job-card" href="#services" data-ga-event="job_select_remove">
+        <h3>🧰 ลอกฟิล์มเก่า</h3>
+        <p>เหมาะสำหรับฟิล์มที่ซีด บวม เป็นฟอง หรือมองไม่ชัด</p>
+      </a>
+      <a class="job-card" href="#price" data-ga-event="job_select_photo">
+        <h3>📷 ส่งรูปประเมินราคา</h3>
+        <p>เหมาะสำหรับลูกค้าที่อยากรู้ราคาเบื้องต้นก่อนเข้าร้านหรือนัดดูพื้นที่</p>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ===== Section 5: PRICE ===== -->
 <section id="price" style="background:#eef4f9">
   <div class="wrap">
@@ -915,6 +1042,53 @@
     <div class="row" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:16px">
       <a class="btn btn-line btn-lg" href="https://line.me/R/ti/p/~@udomsukfilm53" target="_blank" rel="noopener" data-ga-event="glass_photo_request">📷 ส่งรูปกระจกเพื่อประเมินราคา</a>
       <a class="btn btn-outline btn-lg" href="tel:0863704378" data-ga-event="call_click_building">📞 ขอราคาติดฟิล์มบ้าน/คอนโด</a>
+    </div>
+
+    <!-- ===== Phase 3.4: Comparison table (highlight-only, no hidden content) ===== -->
+    <h3 style="color:var(--navy);margin:40px 0 12px">เลือกฟิล์มแบบไหนดี</h3>
+    <p class="sub" style="margin-bottom:14px">เลือกหัวข้อด้านล่างเพื่อไฮไลต์แถวที่ตรงกับความต้องการ ข้อมูลทุกแถวแสดงอยู่ในตารางนี้ทั้งหมดอยู่แล้ว</p>
+    <div class="compare-filters" role="group" aria-label="เลือกประเภทฟิล์มเพื่อไฮไลต์ในตาราง">
+      <button type="button" class="btn btn-outline" data-compare-target="row-standard">ฟิล์มมาตรฐาน</button>
+      <button type="button" class="btn btn-outline" data-compare-target="row-ceramic">ฟิล์มเซรามิก</button>
+      <button type="button" class="btn btn-outline" data-compare-target="row-nano">Nano Ceramic Ultra HD</button>
+      <button type="button" class="btn btn-outline" data-compare-target="row-building">ฟิล์มบ้าน/คอนโด/อาคาร</button>
+    </div>
+    <div class="price-wrap compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>ประเภทฟิล์ม</th><th>เหมาะกับใคร</th><th>จุดเด่น</th><th>การใช้งานที่แนะนำ</th><th>วิธีประเมินราคา</th></tr>
+        </thead>
+        <tbody>
+          <tr id="row-standard">
+            <td>ฟิล์มมาตรฐาน</td>
+            <td>ลูกค้าที่ต้องการลดแสงจ้าและความร้อนในงบประมาณคุ้มค่า</td>
+            <td>ลดแสงจ้าและความร้อนได้ในระดับเหมาะสม</td>
+            <td>รถที่ใช้งานทั่วไป ไม่ได้จอดกลางแดดบ่อย</td>
+            <td>แจ้งรุ่นรถทาง Line เพื่อรับราคาเบื้องต้น</td>
+          </tr>
+          <tr id="row-ceramic">
+            <td>ฟิล์มเซรามิก</td>
+            <td>ลูกค้าที่ต้องการกันร้อนสูงและมองเห็นชัดทั้งกลางวัน/กลางคืน</td>
+            <td>กันร้อนสูง ไม่รบกวนสัญญาณมือถือ/GPS</td>
+            <td>รถที่จอดกลางแจ้งบ่อย หรือใช้งานกลางวันเป็นหลัก</td>
+            <td>แจ้งรุ่นรถทาง Line เพื่อรับราคาเบื้องต้น</td>
+          </tr>
+          <tr id="row-nano">
+            <td>Nano Ceramic Ultra HD</td>
+            <td>ลูกค้าที่ต้องการฟิล์มกันร้อนระดับพรีเมียม ดำนอกใสด้านใน</td>
+            <td>กันร้อนสูง มองจากภายนอกเห็นยาก มองจากภายในยังชัดเจน</td>
+            <td>รถยนต์ไฟฟ้า (EV) และรถที่ต้องการความเป็นส่วนตัวสูง</td>
+            <td>แจ้งรุ่นรถทาง Line เพื่อรับราคาเบื้องต้น</td>
+          </tr>
+          <tr id="row-building">
+            <td>ฟิล์มบ้าน/คอนโด/อาคาร</td>
+            <td>บ้าน คอนโด อาคาร หรือสำนักงานที่ต้องการลดความร้อนและแสงจ้า</td>
+            <td>ลดความร้อนเข้าตัวอาคาร ลดภาระแอร์ เพิ่มความเป็นส่วนตัว</td>
+            <td>กระจกบ้าน คอนโด อาคาร และหน้าร้าน</td>
+            <td>ส่งรูปหรือขนาดกระจกทาง Line เพื่อประเมินราคา</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -958,6 +1132,16 @@
       <figure><img class="ph" src="images/udomsuk-film-shop-atmosphere.jpg" alt="บรรยากาศร้านอุดมสุขฟิล์มศรีนครินทร์53" data-label="บรรยากาศร้าน" loading="lazy" decoding="async"><figcaption>บรรยากาศร้าน</figcaption></figure>
       <figure><img class="ph" src="images/google-review-udomsuk-film.jpg" alt="รีวิว Google ลูกค้าอุดมสุขฟิล์มศรีนครินทร์53" data-label="Screenshot รีวิว Google" loading="lazy" decoding="async"><figcaption>รีวิวลูกค้าบน Google</figcaption></figure>
       <figure><img class="ph" src="images/udomsuk-film-team.jpg" alt="ทีมช่างติดฟิล์มอุดมสุขฟิล์มศรีนครินทร์53" data-label="ทีมช่าง" loading="lazy" decoding="async"><figcaption>ทีมช่างผู้ติดตั้ง</figcaption></figure>
+      <figure><img class="ph" src="images/house-window-film-srinakarin-53.webp" alt="ติดฟิล์มกระจกบ้าน ศรีนครินทร์ 53 - รอรูปจริงจากร้าน" data-label="รอรูปจริงจากร้าน — งานติดฟิล์มบ้าน" loading="lazy" decoding="async"><figcaption>งานติดฟิล์มบ้าน — รอรูปจริงจากร้าน</figcaption></figure>
+      <figure><img class="ph" src="images/condo-window-film-bangna.webp" alt="ติดฟิล์มกระจกคอนโด ย่านบางนา ศรีนครินทร์ 53 - รอรูปจริงจากร้าน" data-label="รอรูปจริงจากร้าน — งานติดฟิล์มคอนโด" loading="lazy" decoding="async"><figcaption>งานติดฟิล์มคอนโด — รอรูปจริงจากร้าน</figcaption></figure>
+      <figure><img class="ph" src="images/building-film-srinakarin-office.webp" alt="ติดฟิล์มกระจกอาคารและสำนักงาน ศรีนครินทร์ 53 - รอรูปจริงจากร้าน" data-label="รอรูปจริงจากร้าน — งานติดฟิล์มอาคาร/สำนักงาน" loading="lazy" decoding="async"><figcaption>งานติดฟิล์มอาคาร/สำนักงาน — รอรูปจริงจากร้าน</figcaption></figure>
+    </div>
+
+    <!-- ===== Phase 3.6: Review & local proof block (no fake reviews/ratings) ===== -->
+    <div class="review-pending">
+      <h3>รีวิวจากลูกค้าที่ใช้บริการจริง</h3>
+      <p>รอเติมรีวิวจริงจาก Google Business Profile ของร้าน</p>
+      <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=อุดมสุขฟิล์มศรีนครินทร์53" target="_blank" rel="noopener" data-ga-event="review_click">⭐ ดูรีวิวบน Google</a>
     </div>
 
     <!-- Before/After slider — พร้อมใช้งานแล้ว (CSS: .ba-slider, JS: initBeforeAfterSliders)
@@ -975,6 +1159,45 @@
       <figcaption>ก่อนลอกฟิล์มเก่า (ซ้าย) เทียบกับหลังติดฟิล์มใหม่ (ขวา) — เลื่อนเพื่อเทียบ</figcaption>
     </figure>
     -->
+  </div>
+</section>
+
+<!-- ===== 3D Process Timeline (Phase 3.3) ===== -->
+<section id="process">
+  <div class="wrap">
+    <h2>ขั้นตอนใช้บริการติดฟิล์มกับอุดมสุขฟิล์มศรีนครินทร์53</h2>
+    <p class="sub">ขั้นตอนตั้งแต่เลือกประเภทงานจนถึงการดูแลหลังติดตั้ง สำหรับลูกค้าที่ต้องการติดฟิล์มรถยนต์ บ้าน คอนโด หรืออาคาร</p>
+    <div class="timeline">
+      <div class="step">
+        <h3>เลือกประเภทงาน</h3>
+        <p>รถยนต์ / บ้าน / คอนโด / อาคาร / ลอกฟิล์มเก่า</p>
+      </div>
+      <div class="step">
+        <h3>ส่งข้อมูลเบื้องต้น</h3>
+        <p>ส่งรุ่นรถ หรือส่งรูปกระจกทาง Line เพื่อให้ร้านดูข้อมูลเบื้องต้น</p>
+      </div>
+      <div class="step">
+        <h3>ประเมินราคา</h3>
+        <p>ร้านประเมินราคาเบื้องต้นตามรุ่นรถ ขนาดพื้นที่ และประเภทฟิล์มที่เลือก</p>
+      </div>
+      <div class="step">
+        <h3>นัดคิวหรือเปิดแผนที่มาที่ร้าน</h3>
+        <p>โทรเช็กคิว หรือกด Google Maps เพื่อนำทางมาที่ร้าน</p>
+      </div>
+      <div class="step">
+        <h3>ติดตั้งโดยช่าง</h3>
+        <p>ติดตั้งฟิล์มตามประเภทงาน พร้อมคำแนะนำการใช้งานหลังติดตั้ง</p>
+      </div>
+      <div class="step">
+        <h3>ดูแลหลังติดตั้ง</h3>
+        <p>สอบถามวิธีดูแลฟิล์มและเงื่อนไขการรับประกันตามฟิล์มที่เลือกได้ที่ร้าน</p>
+      </div>
+    </div>
+    <div class="row" style="display:flex;flex-wrap:wrap;gap:12px">
+      <a class="btn btn-call btn-lg" href="tel:0863704378" data-ga-event="call_click">📞 โทรเช็กคิววันนี้</a>
+      <a class="btn btn-line btn-lg" href="https://line.me/R/ti/p/~@udomsukfilm53" target="_blank" rel="noopener" data-ga-event="line_click">💬 ทัก Line ประเมินราคา</a>
+      <a class="btn btn-outline btn-lg" href="https://maps.google.com/?q=อุดมสุขฟิล์มศรีนครินทร์53" target="_blank" rel="noopener" data-ga-event="maps_click">🗺️ เปิดแผนที่มาที่ร้าน</a>
+    </div>
   </div>
 </section>
 
@@ -1235,6 +1458,23 @@
     function update(){ after.style.clipPath = 'inset(0 0 0 ' + range.value + '%)'; }
     range.addEventListener('input', update);
     update();
+  });
+
+  // "เลือกประเภทงานของคุณ" — highlight selected card (links still navigate normally without JS).
+  document.querySelectorAll('.job-card').forEach(function(card){
+    card.addEventListener('click', function(){
+      document.querySelectorAll('.job-card.active').forEach(function(c){ c.classList.remove('active'); });
+      card.classList.add('active');
+    });
+  });
+
+  // Comparison table — highlight a row, all rows remain visible/SEO-readable at all times.
+  document.querySelectorAll('[data-compare-target]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var target = document.getElementById(btn.getAttribute('data-compare-target'));
+      document.querySelectorAll('.compare-table tbody tr.active').forEach(function(r){ r.classList.remove('active'); });
+      if (target) target.classList.add('active');
+    });
   });
 </script>
 <!-- build: phase-1.5 seo-first visual qa -->
