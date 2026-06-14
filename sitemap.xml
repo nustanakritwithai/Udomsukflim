@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://udomsukfilm53.com/</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://udomsukfilm53.com/images/udomsuk-film-srinakarin-53-shop.jpg</image:loc>
+      <image:title>อุดมสุขฟิล์มศรีนครินทร์53 ร้านติดฟิล์มรถยนต์ ศรีนครินทร์ 53</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://udomsukfilm53.com/images/car-window-film-srinakarin-53.jpg</image:loc>
+      <image:title>ติดฟิล์มรถยนต์รอบคัน ศรีนครินทร์ 53</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://udomsukfilm53.com/images/ceramic-film-srinakarin-53.jpg</image:loc>
+      <image:title>ติดฟิล์มเซรามิกรถยนต์ ศรีนครินทร์</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://udomsukfilm53.com/images/remove-old-window-film-srinakarin.jpg</image:loc>
+      <image:title>ลอกฟิล์มเก่า ติดฟิล์มใหม่ ศรีนครินทร์ 53</image:title>
+    </image:image>
   </url>
 </urlset>
