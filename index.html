@@ -8,6 +8,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="theme-color" content="#0b3d63">
 <meta name="author" content="อุดมสุขฟิล์มศรีนครินทร์53">
+<meta name="build-version" content="phase-1.5-seo-visual-qa">
 <!-- Google Search Console: แทนที่ค่า content ด้วยโค้ดยืนยันจริงจาก Search Console -->
 <meta name="google-site-verification" content="REPLACE_WITH_GSC_VERIFICATION_CODE">
 <meta name="keywords" content="ติดฟิล์มรถยนต์ ศรีนครินทร์ 53, อุดมสุขฟิล์ม, ติดฟิล์มรถยนต์ ศรีนครินทร์, ร้านติดฟิล์มรถยนต์ อุดมสุข, ติดฟิล์มรถยนต์ บางนา, ฟิล์มเซรามิกรถยนต์ ศรีนครินทร์, ลอกฟิล์มเก่า ศรีนครินทร์, ติดฟิล์มอาคาร ศรีนครินทร์, รับติดฟิล์มรถยนต์ใกล้ฉัน, ติดฟิล์มคอนโดใกล้ฉัน, ติดฟิล์มบ้านใกล้ฉัน, ติดฟิล์มอาคารใกล้ฉัน, ติดฟิล์มกระจกบ้าน, ติดฟิล์มกระจกคอนโด, ติดฟิล์มกระจกอาคาร, ติดฟิล์มกระจกสำนักงาน, ฟิล์มกรองแสงบ้าน, ฟิล์มกันร้อนบ้าน, ติดฟิล์มหน้าต่างบ้าน, ติดฟิล์มออฟฟิศ, ฟิล์ม Ceramic 3M, ฟิล์ม Ceramic Hi-Kool, ฟิล์ม Ceramic Lamina, ฟิล์ม Nano Ceramic Ultra HD">
@@ -486,11 +487,10 @@
 
   /* 3D depth hover for service cards (desktop) + tap feedback (mobile) */
   .svc-grid{perspective:1200px}
-  .svc-3d{transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
-    will-change:transform}
+  .svc-3d{transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease}
   @media (hover:hover) and (pointer:fine){
     .svc-3d:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(11,61,99,.18);
-      border-color:rgba(31,127,192,.35)}
+      border-color:rgba(31,127,192,.35);will-change:transform}
   }
   .svc-3d:active{box-shadow:0 4px 14px rgba(11,61,99,.16)}
 
@@ -561,6 +561,44 @@
     .film-layers .layer:nth-child(4){margin-left:42px}
   }
 
+  /* Quick Jump: visual service selector (Phase 2.1) */
+  .quick-jump{padding:30px 0}
+  .quick-jump h2{font-size:1.3rem;text-align:center;margin-bottom:16px}
+  .qj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .qj-card{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;
+    background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+    padding:18px 12px;text-decoration:none;color:var(--navy);box-shadow:var(--shadow);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+  .qj-card .qj-ic{font-size:1.8rem}
+  .qj-card .qj-title{font-weight:800;font-size:.98rem}
+  .qj-card .qj-sub{font-size:.8rem;color:var(--muted)}
+  @media (hover:hover) and (pointer:fine){
+    .qj-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(11,61,99,.16);
+      border-color:rgba(31,127,192,.35)}
+  }
+  .qj-card:active{box-shadow:0 4px 14px rgba(11,61,99,.16)}
+
+  /* Heat reduction visual (CSS-only, Phase 2.2) */
+  .heat-flow{display:flex;align-items:stretch;gap:10px;margin:18px 0;flex-wrap:wrap}
+  .heat-step{flex:1 1 200px;background:#fff;border:1px solid var(--border);border-radius:12px;
+    padding:16px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);
+    animation:heat-step-in .6s ease forwards}
+  .heat-step:nth-child(1){animation-delay:.05s}
+  .heat-step:nth-child(3){animation-delay:.2s}
+  .heat-step:nth-child(5){animation-delay:.35s}
+  .heat-step:nth-child(7){animation-delay:.5s}
+  .heat-step .heat-ic{font-size:1.6rem;display:block;margin-bottom:6px}
+  .heat-step h4{color:var(--navy);font-size:.96rem;font-weight:800;margin-bottom:4px}
+  .heat-step p{margin:0;font-size:.88rem;color:var(--muted)}
+  .heat-arrow{display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+    color:var(--blue);flex:0 0 auto}
+  @keyframes heat-step-in{to{opacity:1;transform:translateY(0)}}
+  @media(max-width:860px){
+    .qj-grid{grid-template-columns:repeat(2,1fr)}
+    .heat-flow{flex-direction:column}
+    .heat-arrow{transform:rotate(90deg)}
+  }
+
   /* Sticky mobile bar */
   .sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;
     grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.92);
@@ -597,6 +635,7 @@
   /* Respect reduced-motion: disable all transitions/animations site-wide */
   @media (prefers-reduced-motion: reduce){
     *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .heat-step{opacity:1;transform:none}
   }
 
   @media(max-width:860px){
@@ -604,6 +643,7 @@
     .hero-grid{grid-template-columns:1fr;gap:24px}
     .hero h1{font-size:1.9rem}
     .hero-cover{max-height:320px}
+    .hero-grid > div{padding:18px}
     .info-grid,.svc-grid,.contact-grid{grid-template-columns:1fr}
     .feat-grid{grid-template-columns:1fr 1fr}
     .gallery{grid-template-columns:repeat(2,1fr)}
@@ -682,6 +722,35 @@
     </div>
   </div>
 </header>
+
+<!-- ===== Quick Jump: Visual Service Selector (Phase 2.1) ===== -->
+<section class="quick-jump" aria-label="เลือกบริการที่ต้องการ">
+  <div class="wrap">
+    <h2>เลือกบริการที่ต้องการ</h2>
+    <div class="qj-grid">
+      <a class="qj-card" href="#services" data-ga-event="quick_jump_car">
+        <span class="qj-ic" aria-hidden="true">🚗</span>
+        <span class="qj-title">ฟิล์มรถยนต์</span>
+        <span class="qj-sub">ดูบริการติดฟิล์มรถยนต์</span>
+      </a>
+      <a class="qj-card" href="#building" data-ga-event="quick_jump_building">
+        <span class="qj-ic" aria-hidden="true">🏢</span>
+        <span class="qj-title">ฟิล์มบ้าน/คอนโด/อาคาร</span>
+        <span class="qj-sub">ดูบริการติดฟิล์มบ้าน คอนโด อาคาร</span>
+      </a>
+      <a class="qj-card" href="#price" data-ga-event="quick_jump_price">
+        <span class="qj-ic" aria-hidden="true">💰</span>
+        <span class="qj-title">แพ็กเกจราคา</span>
+        <span class="qj-sub">ดูแพ็กเกจราคา</span>
+      </a>
+      <a class="qj-card" href="#contact" data-ga-event="quick_jump_contact">
+        <span class="qj-ic" aria-hidden="true">📍</span>
+        <span class="qj-title">ติดต่อร้าน</span>
+        <span class="qj-sub">ติดต่อประเมินราคา</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- ===== Section 2: STORE INFO ===== -->
 <section id="about">
@@ -953,6 +1022,34 @@
         <p>ชั้นในสุดที่ยึดฟิล์มเข้ากับกระจกอย่างแน่นหนา หากชั้นนี้เสื่อมสภาพ ฟิล์มจะเริ่มบวม เป็นฟอง หรือหลุดลอก ซึ่งเป็นสัญญาณว่าควรลอกฟิล์มเก่าและติดฟิล์มใหม่</p>
       </div>
     </div>
+
+    <h3 style="color:var(--navy);margin:36px 0 6px">ติดฟิล์มช่วยลดความร้อนอย่างไร</h3>
+    <p class="sub" style="margin-bottom:10px">ภาพรวมขั้นตอนที่ฟิล์มกรองแสงช่วยลดความร้อนก่อนเข้าสู่ภายในรถ บ้าน คอนโด หรืออาคาร</p>
+    <div class="heat-flow">
+      <div class="heat-step">
+        <span class="heat-ic" aria-hidden="true">☀️</span>
+        <h4>1. แสงแดดและความร้อนกระทบกระจก</h4>
+        <p>แสงแดดและความร้อนจากภายนอกตกกระทบกระจกรถ บ้าน คอนโด หรืออาคารโดยตรง</p>
+      </div>
+      <div class="heat-arrow" aria-hidden="true">→</div>
+      <div class="heat-step">
+        <span class="heat-ic" aria-hidden="true">🪟</span>
+        <h4>2. ฟิล์มช่วยกรองแสง ลดความร้อน และลดแสงจ้า</h4>
+        <p>ชั้นฟิล์มที่ติดบนกระจกช่วยกรองแสง ลดความร้อน และลดแสงจ้าก่อนเข้าสู่ภายใน</p>
+      </div>
+      <div class="heat-arrow" aria-hidden="true">→</div>
+      <div class="heat-step">
+        <span class="heat-ic" aria-hidden="true">❄️</span>
+        <h4>3. ภายในใช้งานสบายขึ้น</h4>
+        <p>ภายในรถ บ้าน คอนโด หรืออาคารใช้งานสบายขึ้น อุณหภูมิลดลง และลดภาระการทำงานของแอร์</p>
+      </div>
+      <div class="heat-arrow" aria-hidden="true">→</div>
+      <div class="heat-step">
+        <span class="heat-ic" aria-hidden="true">🎯</span>
+        <h4>4. เลือกฟิล์มให้เหมาะกับการใช้งาน</h4>
+        <p>ลูกค้าสามารถเลือกฟิล์มตามงบประมาณและการใช้งานจริง โดยปรึกษาทีมงานได้ที่ร้าน</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1140,5 +1237,6 @@
     update();
   });
 </script>
+<!-- build: phase-1.5 seo-first visual qa -->
 </body>
 </html>
