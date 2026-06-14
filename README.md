@@ -6,10 +6,19 @@
 ## โครงสร้างไฟล์
 ```
 index.html      ← หน้าเว็บทั้งหมด (HTML + CSS + JS เล็กน้อย ในไฟล์เดียว)
-robots.txt      ← อนุญาตให้ Google เก็บข้อมูล + ชี้ไป sitemap
+robots.txt      ← เปิดให้ Google + AI crawler ทั้งหมด + ชี้ไป sitemap
 sitemap.xml     ← แผนผังเว็บ
+llms.txt        ← สรุปข้อมูลร้านสำหรับ AI (ChatGPT/Claude/Perplexity ดึงไปตอบ)
+render.yaml     ← Blueprint สำหรับ deploy เป็น Static Site บน Render
 images/         ← รูปจริงของร้าน (ดูคำแนะนำใน images/README.md)
 ```
+
+## ปรับแต่งสำหรับ Google + AI Search
+- **Structured data หลายชุด:** LocalBusiness/AutoRepair (พร้อม geo, รายการบริการ `makesOffer`, `sameAs`, แผนที่), FAQPage, WebSite, WebPage (`speakable` สำหรับ voice/AI), BreadcrumbList — เชื่อมกันด้วย `@id`
+- **เปิดทาง AI crawler** ใน `robots.txt`: GPTBot, OAI-SearchBot, ClaudeBot, anthropic-ai, PerplexityBot, Google-Extended, Applebot-Extended, CCBot ฯลฯ
+- **`llms.txt`** สรุปข้อเท็จจริงร้านแบบ markdown ให้ AI อ้างอิงได้แม่นยำ
+- **Geo meta** (`geo.position`, `ICBM`) + meta keywords + `max-image-preview:large`
+- FAQ เขียนแบบถาม–ตอบชัด เพื่อให้ติด AI Overviews / People Also Ask
 
 ## สิ่งที่ทำไว้ให้แล้ว (ตาม Acceptance Criteria)
 - ✅ One page ครบทุก section: Hero, ข้อมูลร้าน, จุดขาย 6 ข้อ, บริการ 4 อย่าง, ตารางราคา, พื้นที่บริการ, ผลงาน/รีวิว, FAQ, ติดต่อ + ฝัง Google Maps
@@ -36,6 +45,12 @@ images/         ← รูปจริงของร้าน (ดูคำแ�
 4. **ลิงก์ดูรีวิว Google** — ใส่ `placeid` จริง
 5. **รูปภาพ** — นำรูปจริงวางใน `images/` ตามชื่อไฟล์ใน `images/README.md`
    (อย่างน้อย 10 รูปตาม Acceptance Criteria)
+6. **พิกัด geo** — `index.html` (meta + schema) ใช้พิกัดประมาณ `13.6856, 100.6510`
+   ของย่านศรีนครินทร์ 53 ควรเปลี่ยนเป็น **พิกัดจริงจาก Google Business Profile**
+   (เปิด Google Maps → คลิกหมุดร้าน → คัดลอก lat,lng) ทั้งใน `geo.position`, `ICBM`
+   และ `GeoCoordinates` ใน schema
+7. **Social links (`sameAs`)** — แก้ลิงก์ Facebook/Line ในบล็อก LocalBusiness schema
+   ให้ตรงเพจจริงของร้าน (ช่วยให้ Google/AI ยืนยันตัวตนธุรกิจ)
 
 ## การนำขึ้นออนไลน์ (Hosting)
 เป็น static site ใช้ที่ไหนก็ได้ เช่น **Cloudflare Pages / Netlify / Vercel** หรือโฮสต์ทั่วไป
