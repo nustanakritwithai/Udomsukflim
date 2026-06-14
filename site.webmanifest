@@ -1,0 +1,17 @@
+{
+  "name": "อุดมสุขฟิล์มศรีนครินทร์53 — ติดฟิล์มรถยนต์ ศรีนครินทร์ 53",
+  "short_name": "อุดมสุขฟิล์ม53",
+  "description": "ร้านติดฟิล์มรถยนต์ ฟิล์มเซรามิก ลอกฟิล์มเก่า ติดฟิล์มอาคาร ย่านศรีนครินทร์ 53 อุดมสุข บางนา",
+  "lang": "th",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#0b3d63",
+  "icons": [
+    {
+      "src": "images/udomsuk-film-srinakarin-53-shop.jpg",
+      "sizes": "any",
+      "type": "image/jpeg"
+    }
+  ]
+}

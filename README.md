@@ -5,13 +5,20 @@
 
 ## โครงสร้างไฟล์
 ```
-index.html      ← หน้าเว็บทั้งหมด (HTML + CSS + JS เล็กน้อย ในไฟล์เดียว)
-robots.txt      ← เปิดให้ Google + AI crawler ทั้งหมด + ชี้ไป sitemap
-sitemap.xml     ← แผนผังเว็บ
-llms.txt        ← สรุปข้อมูลร้านสำหรับ AI (ChatGPT/Claude/Perplexity ดึงไปตอบ)
-render.yaml     ← Blueprint สำหรับ deploy เป็น Static Site บน Render
-images/         ← รูปจริงของร้าน (ดูคำแนะนำใน images/README.md)
+index.html        ← หน้าเว็บทั้งหมด (HTML + CSS + JS เล็กน้อย ในไฟล์เดียว)
+404.html          ← หน้าไม่พบ (กัน soft-404)
+robots.txt        ← เปิดให้ Google + AI crawler ทั้งหมด + ชี้ไป sitemap
+sitemap.xml       ← แผนผังเว็บ + image sitemap
+llms.txt          ← สรุปข้อมูลร้านสำหรับ AI (ChatGPT/Claude/Perplexity ดึงไปตอบ)
+site.webmanifest  ← PWA/mobile metadata
+render.yaml       ← Blueprint สำหรับ deploy เป็น Static Site บน Render
+images/           ← รูปจริงของร้าน (ดูคำแนะนำใน images/README.md)
 ```
+
+## Performance / Core Web Vitals
+- รูปทุกภาพมี `loading="lazy"` + `decoding="async"`; รูป hero เป็น `eager` + `fetchpriority="high"` + preload (ดี LCP)
+- Google Fonts โหลดแบบไม่ block การ render (preload + `media="print"` swap)
+- มี `<main>`, `<nav>` jump links, skip-link, `<address>` semantic → โครงสร้างชัดต่อ crawler/AI
 
 ## ปรับแต่งสำหรับ Google + AI Search
 - **Structured data หลายชุด:** LocalBusiness/AutoRepair (พร้อม geo, รายการบริการ `makesOffer`, `sameAs`, แผนที่), FAQPage, WebSite, WebPage (`speakable` สำหรับ voice/AI), BreadcrumbList — เชื่อมกันด้วย `@id`
@@ -51,6 +58,16 @@ images/         ← รูปจริงของร้าน (ดูคำแ�
    และ `GeoCoordinates` ใน schema
 7. **Social links (`sameAs`)** — แก้ลิงก์ Facebook/Line ในบล็อก LocalBusiness schema
    ให้ตรงเพจจริงของร้าน (ช่วยให้ Google/AI ยืนยันตัวตนธุรกิจ)
+8. **Google Search Console** — แทนที่ `REPLACE_WITH_GSC_VERIFICATION_CODE` ใน meta
+   `google-site-verification` ด้วยโค้ดจริง (หรือใช้วิธียืนยันแบบ DNS)
+9. **Google Analytics 4** — แทน `G-XXXXXXXXXX` ด้วย Measurement ID จริง แล้ว uncomment บล็อก GA4 ก่อน `</head>`
+10. **ดาวรีวิวใน SERP** — เมื่อมีรีวิวจริง ให้เติม `aggregateRating`/`review` ใน LocalBusiness
+    schema (มี template เป็นคอมเมนต์ใน `index.html` แล้ว) — **ใช้ตัวเลขจริงเท่านั้น**
+
+## ขีดจำกัดที่เหลือ (ต้องใช้ข้อมูลจริง — โค้ดรองรับไว้แล้ว)
+ทุกข้อด้านบน (1–10) คือสิ่งที่โค้ดเตรียม placeholder ไว้พร้อม เหลือแค่เติมค่าจริง
+เมื่อเติมครบ เว็บจะพร้อมเก็บคะแนน SEO/AI เต็มที่ — โดยเฉพาะ **รูปจริง** และ
+**รีวิวจริง (ดาวใน SERP)** คือสองตัวที่ส่งผลต่ออัตราการคลิกมากที่สุด
 
 ## การนำขึ้นออนไลน์ (Hosting)
 เป็น static site ใช้ที่ไหนก็ได้ เช่น **Cloudflare Pages / Netlify / Vercel** หรือโฮสต์ทั่วไป

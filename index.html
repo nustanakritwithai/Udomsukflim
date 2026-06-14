@@ -8,6 +8,8 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="theme-color" content="#0b3d63">
 <meta name="author" content="อุดมสุขฟิล์มศรีนครินทร์53">
+<!-- Google Search Console: แทนที่ค่า content ด้วยโค้ดยืนยันจริงจาก Search Console -->
+<meta name="google-site-verification" content="REPLACE_WITH_GSC_VERIFICATION_CODE">
 <meta name="keywords" content="ติดฟิล์มรถยนต์ ศรีนครินทร์ 53, อุดมสุขฟิล์ม, ติดฟิล์มรถยนต์ ศรีนครินทร์, ร้านติดฟิล์มรถยนต์ อุดมสุข, ติดฟิล์มรถยนต์ บางนา, ฟิล์มเซรามิกรถยนต์ ศรีนครินทร์, ลอกฟิล์มเก่า ศรีนครินทร์, ติดฟิล์มอาคาร ศรีนครินทร์">
 <link rel="canonical" href="https://udomsukfilm53.com/">
 
@@ -42,7 +44,16 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700;800&display=swap" rel="stylesheet">
+<!-- Non-render-blocking fonts (improves FCP/LCP) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700;800&display=swap"></noscript>
+<!-- Preload LCP hero image (replace with real photo path if changed) -->
+<link rel="preload" as="image" href="images/udomsuk-film-srinakarin-53-shop.jpg" fetchpriority="high">
+
+<link rel="manifest" href="site.webmanifest">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+<meta name="apple-mobile-web-app-title" content="อุดมสุขฟิล์ม53">
 
 <!-- LocalBusiness Schema (enriched for Google + AI search) -->
 <script type="application/ld+json">
@@ -139,6 +150,17 @@
   ]
 }
 </script>
+
+<!--
+  ⭐ ดาวรีวิวใน SERP: เมื่อมีรีวิวจริง ให้เติม aggregateRating เข้าไปใน LocalBusiness schema ด้านบน
+  (ใช้ตัวเลขจริงเท่านั้น ห้ามแต่งขึ้นเอง — ผิดนโยบาย Google) ตัวอย่าง:
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "37" },
+  "review": [
+    { "@type": "Review", "author": {"@type":"Person","name":"ชื่อลูกค้า"},
+      "reviewRating": {"@type":"Rating","ratingValue":"5"},
+      "reviewBody": "ข้อความรีวิวจริง" }
+  ]
+-->
 
 <!-- WebSite + WebPage (speakable for voice/AI assistants) -->
 <script type="application/ld+json">
@@ -299,6 +321,20 @@
   h2{font-size:1.7rem;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.35}
   .sub{color:var(--muted);margin-bottom:26px;max-width:760px}
 
+  /* Skip link (a11y) */
+  .skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--accent);
+    color:#3a2600;padding:10px 16px;font-weight:700;border-radius:0 0 8px 0}
+  .skip-link:focus{left:0}
+
+  /* In-page nav (helps sitelinks + UX) */
+  .nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40;
+    box-shadow:0 2px 8px rgba(11,61,99,.05)}
+  .nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 18px;-webkit-overflow-scrolling:touch}
+  .nav a{white-space:nowrap;font-weight:600;font-size:.92rem;color:var(--navy);
+    padding:7px 13px;border-radius:30px}
+  .nav a:hover{background:#eef4f9}
+  address{font-style:normal}
+
   /* Top bar */
   .topbar{background:var(--navy-dark);color:#cfe2f1;font-size:.92rem}
   .topbar .wrap{display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center;padding:8px 18px}
@@ -442,8 +478,20 @@
     .hero-cta .btn,.cta-band .row .btn{width:100%}
   }
 </style>
+
+<!-- Google Analytics 4: แทนที่ G-XXXXXXXXXX ด้วย Measurement ID จริง แล้ว uncomment
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+-->
 </head>
 <body>
+
+<a href="#main" class="skip-link">ข้ามไปยังเนื้อหาหลัก</a>
 
 <!-- Top contact bar -->
 <div class="topbar">
@@ -453,6 +501,22 @@
     <span>📍 ถ.ศรีนครินทร์ 53 หนองบอน ประเวศ กทม.</span>
   </div>
 </div>
+
+<!-- In-page navigation -->
+<nav class="nav" aria-label="เมนูในหน้า">
+  <div class="wrap">
+    <a href="#about">ข้อมูลร้าน</a>
+    <a href="#services">บริการ</a>
+    <a href="#price">ราคา</a>
+    <a href="#areas">พื้นที่บริการ</a>
+    <a href="#portfolio">ผลงาน</a>
+    <a href="#guide">ความรู้เรื่องฟิล์ม</a>
+    <a href="#faq">คำถามที่พบบ่อย</a>
+    <a href="#contact">ติดต่อ</a>
+  </div>
+</nav>
+
+<main id="main">
 
 <!-- ===== Section 1: HERO ===== -->
 <header class="hero">
@@ -476,7 +540,7 @@
       <img class="ph wide" src="images/udomsuk-film-srinakarin-53-shop.jpg"
            alt="อุดมสุขฟิล์มศรีนครินทร์53 ร้านติดฟิล์มรถยนต์ ศรีนครินทร์ 53"
            onerror="this.classList.add('ph');this.removeAttribute('src');this.insertAdjacentText('beforeend','');"
-           data-label="รูปหน้าร้านจริง">
+           data-label="รูปหน้าร้านจริง" loading="eager" fetchpriority="high" decoding="async" width="640" height="360">
     </div>
   </div>
 </header>
@@ -489,7 +553,7 @@
       <div>
         <p class="sub">อุดมสุขฟิล์มศรีนครินทร์53 เป็นร้านบริการติดฟิล์มกรองแสงรถยนต์ ฟิล์มเซรามิก ลอกฟิล์มเก่า และติดฟิล์มอาคาร ตั้งอยู่บนถนนศรีนครินทร์ 53 แขวงหนองบอน เขตประเวศ กรุงเทพมหานคร เหมาะสำหรับลูกค้าย่านศรีนครินทร์ อุดมสุข บางนา อ่อนนุช พัฒนาการ ลาซาล แบริ่ง และพื้นที่ใกล้เคียงที่ต้องการติดฟิล์มรถยนต์กับร้านที่มีหน้าร้านชัดเจน ติดต่อได้จริง และมีผลงานติดตั้งจริง</p>
         <img class="ph wide" src="images/udomsuk-film-srinakarin-53-front.jpg"
-             alt="หน้าร้านอุดมสุขฟิล์มศรีนครินทร์53 ถนนศรีนครินทร์ 53 หนองบอน ประเวศ" data-label="รูปป้ายร้าน / หน้าร้าน">
+             alt="หน้าร้านอุดมสุขฟิล์มศรีนครินทร์53 ถนนศรีนครินทร์ 53 หนองบอน ประเวศ" data-label="รูปป้ายร้าน / หน้าร้าน" loading="lazy" decoding="async">
       </div>
       <div class="info-card">
         <dl>
@@ -528,28 +592,28 @@
     <p class="sub">รับงานติดฟิล์มครบวงจร ทั้งรถยนต์ ฟิล์มเซรามิก ลอกฟิล์มเก่า และฟิล์มอาคาร</p>
     <div class="svc-grid">
       <article class="svc">
-        <img class="ph wide" src="images/car-window-film-srinakarin-53.jpg" alt="ติดฟิล์มรถยนต์รอบคัน ศรีนครินทร์ 53 อุดมสุขฟิล์ม" data-label="รถกำลังติดฟิล์ม">
+        <img class="ph wide" src="images/car-window-film-srinakarin-53.jpg" alt="ติดฟิล์มรถยนต์รอบคัน ศรีนครินทร์ 53 อุดมสุขฟิล์ม" data-label="รถกำลังติดฟิล์ม" loading="lazy" decoding="async">
         <div class="body">
           <h3>1. ติดฟิล์มรถยนต์</h3>
           <p>รับติดฟิล์มรถยนต์รอบคันสำหรับรถเก๋ง รถกระบะ รถ SUV รถตู้ และรถใช้งานทั่วไป เหมาะสำหรับลูกค้าที่ต้องการลดความร้อน ลดแสงจ้า เพิ่มความเป็นส่วนตัว และช่วยให้ขับรถสบายขึ้นในสภาพอากาศร้อนของกรุงเทพฯ</p>
         </div>
       </article>
       <article class="svc">
-        <img class="ph wide" src="images/ceramic-film-srinakarin-53.jpg" alt="ติดฟิล์มเซรามิกรถยนต์ ย่านบางนา อุดมสุข ศรีนครินทร์" data-label="ฟิล์มเซรามิก">
+        <img class="ph wide" src="images/ceramic-film-srinakarin-53.jpg" alt="ติดฟิล์มเซรามิกรถยนต์ ย่านบางนา อุดมสุข ศรีนครินทร์" data-label="ฟิล์มเซรามิก" loading="lazy" decoding="async">
         <div class="body">
           <h3>2. ติดฟิล์มเซรามิก</h3>
           <p>ฟิล์มเซรามิกเหมาะสำหรับลูกค้าที่ต้องการฟิล์มกันร้อนประสิทธิภาพสูง ภาพมองเห็นชัด และต้องการลดความร้อนภายในรถ โดยยังคงความสบายในการขับขี่ทั้งกลางวันและกลางคืน</p>
         </div>
       </article>
       <article class="svc">
-        <img class="ph wide" src="images/remove-old-window-film-srinakarin.jpg" alt="ลอกฟิล์มเก่า ติดฟิล์มใหม่ ศรีนครินทร์ 53" data-label="ลอกฟิล์มเก่า ติดใหม่">
+        <img class="ph wide" src="images/remove-old-window-film-srinakarin.jpg" alt="ลอกฟิล์มเก่า ติดฟิล์มใหม่ ศรีนครินทร์ 53" data-label="ลอกฟิล์มเก่า ติดใหม่" loading="lazy" decoding="async">
         <div class="body">
           <h3>3. ลอกฟิล์มเก่า ติดฟิล์มใหม่</h3>
           <p>สำหรับรถที่ฟิล์มเดิมเริ่มซีด บวม เป็นฟอง ลอก หรือทัศนวิสัยไม่ดี สามารถนำรถเข้ามาประเมินเพื่อลอกฟิล์มเก่าและติดฟิล์มใหม่ได้</p>
         </div>
       </article>
       <article class="svc">
-        <img class="ph wide" src="images/building-film-srinakarin.jpg" alt="ติดฟิล์มอาคาร บ้าน คอนโด ศรีนครินทร์" data-label="ฟิล์มอาคาร / บ้าน / คอนโด">
+        <img class="ph wide" src="images/building-film-srinakarin.jpg" alt="ติดฟิล์มอาคาร บ้าน คอนโด ศรีนครินทร์" data-label="ฟิล์มอาคาร / บ้าน / คอนโด" loading="lazy" decoding="async">
         <div class="body">
           <h3>4. ติดฟิล์มอาคาร บ้าน คอนโด</h3>
           <p>รับติดฟิล์มกรองแสงสำหรับบ้าน คอนโด อาคาร สำนักงาน และกระจกทั่วไป เหมาะสำหรับลดความร้อน ลดแสงจ้า และเพิ่มความเป็นส่วนตัวให้พื้นที่ใช้งาน</p>
@@ -628,14 +692,14 @@
     <h2>รีวิวผลงานติดฟิล์มรถยนต์จากลูกค้าจริง</h2>
     <p class="sub">ก่อนตัดสินใจติดฟิล์ม ลูกค้าสามารถดูตัวอย่างผลงานจริงจากรถที่เข้ารับบริการได้ ทั้งงานติดฟิล์มรอบคัน งานลอกฟิล์มเก่าติดใหม่ งานฟิล์มเซรามิก และงานติดฟิล์มอาคาร</p>
     <div class="gallery">
-      <figure><img class="ph" src="images/car-window-film-srinakarin-53-toyota-yaris.jpg" alt="Toyota Yaris ติดฟิล์มรอบคัน ศรีนครินทร์ 53" data-label="Toyota Yaris"><figcaption>Toyota Yaris ติดฟิล์มรอบคัน ศรีนครินทร์ 53</figcaption></figure>
-      <figure><img class="ph" src="images/ceramic-film-bangna-honda-civic.jpg" alt="Honda Civic ติดฟิล์มเซรามิก ย่านบางนา" data-label="Honda Civic"><figcaption>Honda Civic ติดฟิล์มเซรามิก ย่านบางนา</figcaption></figure>
-      <figure><img class="ph" src="images/heat-film-udomsuk-byd-atto3.jpg" alt="BYD Atto 3 ติดฟิล์มกันร้อน อุดมสุข" data-label="BYD Atto 3"><figcaption>BYD Atto 3 ติดฟิล์มกันร้อน อุดมสุข</figcaption></figure>
-      <figure><img class="ph" src="images/remove-old-film-new-film-srinakarin.jpg" alt="ลอกฟิล์มเก่าและติดฟิล์มใหม่ ศรีนครินทร์" data-label="ลอกฟิล์มเก่า–ติดใหม่"><figcaption>ลอกฟิล์มเก่าและติดฟิล์มใหม่ ศรีนครินทร์</figcaption></figure>
-      <figure><img class="ph" src="images/film-installation-process-srinakarin-53.jpg" alt="งานระหว่างติดตั้งฟิล์มรถยนต์ ที่อุดมสุขฟิล์มศรีนครินทร์53" data-label="ระหว่างติดตั้ง"><figcaption>งานระหว่างติดตั้งฟิล์ม</figcaption></figure>
-      <figure><img class="ph" src="images/udomsuk-film-shop-atmosphere.jpg" alt="บรรยากาศร้านอุดมสุขฟิล์มศรีนครินทร์53" data-label="บรรยากาศร้าน"><figcaption>บรรยากาศร้าน</figcaption></figure>
-      <figure><img class="ph" src="images/google-review-udomsuk-film.jpg" alt="รีวิว Google ลูกค้าอุดมสุขฟิล์มศรีนครินทร์53" data-label="Screenshot รีวิว Google"><figcaption>รีวิวลูกค้าบน Google</figcaption></figure>
-      <figure><img class="ph" src="images/udomsuk-film-team.jpg" alt="ทีมช่างติดฟิล์มอุดมสุขฟิล์มศรีนครินทร์53" data-label="ทีมช่าง"><figcaption>ทีมช่างผู้ติดตั้ง</figcaption></figure>
+      <figure><img class="ph" src="images/car-window-film-srinakarin-53-toyota-yaris.jpg" alt="Toyota Yaris ติดฟิล์มรอบคัน ศรีนครินทร์ 53" data-label="Toyota Yaris" loading="lazy" decoding="async"><figcaption>Toyota Yaris ติดฟิล์มรอบคัน ศรีนครินทร์ 53</figcaption></figure>
+      <figure><img class="ph" src="images/ceramic-film-bangna-honda-civic.jpg" alt="Honda Civic ติดฟิล์มเซรามิก ย่านบางนา" data-label="Honda Civic" loading="lazy" decoding="async"><figcaption>Honda Civic ติดฟิล์มเซรามิก ย่านบางนา</figcaption></figure>
+      <figure><img class="ph" src="images/heat-film-udomsuk-byd-atto3.jpg" alt="BYD Atto 3 ติดฟิล์มกันร้อน อุดมสุข" data-label="BYD Atto 3" loading="lazy" decoding="async"><figcaption>BYD Atto 3 ติดฟิล์มกันร้อน อุดมสุข</figcaption></figure>
+      <figure><img class="ph" src="images/remove-old-film-new-film-srinakarin.jpg" alt="ลอกฟิล์มเก่าและติดฟิล์มใหม่ ศรีนครินทร์" data-label="ลอกฟิล์มเก่า–ติดใหม่" loading="lazy" decoding="async"><figcaption>ลอกฟิล์มเก่าและติดฟิล์มใหม่ ศรีนครินทร์</figcaption></figure>
+      <figure><img class="ph" src="images/film-installation-process-srinakarin-53.jpg" alt="งานระหว่างติดตั้งฟิล์มรถยนต์ ที่อุดมสุขฟิล์มศรีนครินทร์53" data-label="ระหว่างติดตั้ง" loading="lazy" decoding="async"><figcaption>งานระหว่างติดตั้งฟิล์ม</figcaption></figure>
+      <figure><img class="ph" src="images/udomsuk-film-shop-atmosphere.jpg" alt="บรรยากาศร้านอุดมสุขฟิล์มศรีนครินทร์53" data-label="บรรยากาศร้าน" loading="lazy" decoding="async"><figcaption>บรรยากาศร้าน</figcaption></figure>
+      <figure><img class="ph" src="images/google-review-udomsuk-film.jpg" alt="รีวิว Google ลูกค้าอุดมสุขฟิล์มศรีนครินทร์53" data-label="Screenshot รีวิว Google" loading="lazy" decoding="async"><figcaption>รีวิวลูกค้าบน Google</figcaption></figure>
+      <figure><img class="ph" src="images/udomsuk-film-team.jpg" alt="ทีมช่างติดฟิล์มอุดมสุขฟิล์มศรีนครินทร์53" data-label="ทีมช่าง" loading="lazy" decoding="async"><figcaption>ทีมช่างผู้ติดตั้ง</figcaption></figure>
     </div>
   </div>
 </section>
@@ -723,13 +787,15 @@
     <p class="sub">โทร ทัก Line หรือเปิดแผนที่มาที่ร้านได้เลย เปิดบริการทุกวัน 09:30–19:00 น.</p>
     <div class="contact-grid">
       <div class="info-card">
+        <address>
         <dl>
           <dt>ชื่อร้าน</dt><dd>อุดมสุขฟิล์มศรีนครินทร์53</dd>
           <dt>ที่อยู่</dt><dd>ถ.ศรีนครินทร์ 53 แขวงหนองบอน เขตประเวศ กรุงเทพมหานคร 10250</dd>
           <dt>โทร</dt><dd><a href="tel:0863704378"><strong>086-370-4378</strong></a></dd>
-          <dt>เวลาเปิด</dt><dd>09:30–19:00 น. (เปิดทุกวัน)</dd>
+          <dt>เวลาเปิด</dt><dd><time>09:30</time>–<time>19:00</time> น. (เปิดทุกวัน)</dd>
           <dt>พื้นที่ใกล้เคียง</dt><dd>ศรีนครินทร์ อุดมสุข บางนา อ่อนนุช พัฒนาการ ลาซาล แบริ่ง</dd>
         </dl>
+        </address>
         <div class="row" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px">
           <a class="btn btn-call" href="tel:0863704378">📞 โทรเลย</a>
           <a class="btn btn-line" href="https://line.me/R/ti/p/~@udomsukfilm53" target="_blank" rel="noopener">💬 ทัก Line</a>
@@ -746,6 +812,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ===== CTA #4 / Footer ===== -->
 <footer>

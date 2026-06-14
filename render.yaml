@@ -6,6 +6,7 @@ services:
     staticPublishPath: .
     # ไม่มี build step (เป็น HTML/CSS/JS ล้วน)
     buildCommand: ""
+    notFoundPage: 404.html
     pullRequestPreviewsEnabled: true
     headers:
       - path: /*
