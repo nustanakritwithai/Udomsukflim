@@ -9,8 +9,12 @@
 กดปุ่มด้านบน → ล็อกอิน Render → กด **Apply** (Render จะอ่าน `render.yaml` เอง) ได้ URL `*.onrender.com` พร้อม HTTPS อัตโนมัติ
 
 - **โดเมนจริง (canonical):** `https://udomsuk-film.com/` — schema/canonical/sitemap ทุกจุดชี้มาที่นี่
-- **เดโม/สำรอง:** `https://udomsukflim.onrender.com/` — ใช้พรีวิวก่อน (canonical ชี้กลับโดเมนจริง Google จึงไม่ index ซ้ำ)
+- **เดโม/สำรอง:** `https://udomsukflim.onrender.com/` — ใช้พรีวิวก่อนเท่านั้น (canonical ชี้กลับโดเมนจริง Google จึงไม่ index ซ้ำ)
 - ขั้นต่อไป: ที่ Render → **Settings → Custom Domains** เพิ่ม `udomsuk-film.com` แล้วตั้ง DNS ตามที่ Render บอก เพื่อให้โดเมนจริงออนไลน์
+
+> ⚠️ **ชื่อ repo/URL เดโม "Udomsukflim" / "udomsukflim.onrender.com" เป็นเพียงชื่อภายในสำหรับพรีวิวเท่านั้น
+> ไม่ใช่ branding สุดท้ายของร้าน** เมื่อขึ้น production จริงทุกจุด (title, schema, canonical, og:url, sitemap, robots)
+> ใช้สะกดที่ถูกต้องคือ **"film"** และโดเมน `udomsuk-film.com` (หรือโดเมนจริงที่เจ้าของร้านเลือก) อยู่แล้ว
 
 ## โครงสร้างไฟล์
 ```
@@ -30,24 +34,27 @@ images/           ← รูปจริงของร้าน (ดูคำ�
 - มี `<main>`, `<nav>` jump links, skip-link, `<address>` semantic → โครงสร้างชัดต่อ crawler/AI
 
 ## ปรับแต่งสำหรับ Google + AI Search
-- **Structured data หลายชุด:** LocalBusiness/AutoRepair (พร้อม geo, รายการบริการ `makesOffer`, `sameAs`, แผนที่), FAQPage, WebSite, WebPage (`speakable` สำหรับ voice/AI), BreadcrumbList — เชื่อมกันด้วย `@id`
+- **Structured data หลายชุด:** LocalBusiness/AutoRepair (พร้อม geo, `hasOfferCatalog` แยก 2 หมวดบริการ — ติดฟิล์มรถยนต์ และติดฟิล์มบ้าน/คอนโด/อาคาร/สำนักงาน, `sameAs`, แผนที่), FAQPage, WebSite, WebPage (`speakable` สำหรับ voice/AI), BreadcrumbList — เชื่อมกันด้วย `@id`
 - **เปิดทาง AI crawler** ใน `robots.txt`: GPTBot, OAI-SearchBot, ClaudeBot, anthropic-ai, PerplexityBot, Google-Extended, Applebot-Extended, CCBot ฯลฯ
-- **`llms.txt`** สรุปข้อเท็จจริงร้านแบบ markdown ให้ AI อ้างอิงได้แม่นยำ
+- **`llms.txt`** สรุปข้อเท็จจริงร้านแบบ markdown ให้ AI อ้างอิงได้แม่นยำ ครอบคลุมทั้ง 2 หมวดบริการ
 - **Geo meta** (`geo.position`, `ICBM`) + meta keywords + `max-image-preview:large`
-- FAQ เขียนแบบถาม–ตอบชัด เพื่อให้ติด AI Overviews / People Also Ask
+- FAQ เขียนแบบถาม–ตอบชัด ครอบคลุมทั้งฟิล์มรถยนต์และฟิล์มบ้าน/คอนโด/อาคาร เพื่อให้ติด AI Overviews / People Also Ask
 
-## สิ่งที่ทำไว้ให้แล้ว (ตาม Acceptance Criteria)
-- ✅ One page ครบทุก section: Hero, ข้อมูลร้าน, จุดขาย 6 ข้อ, บริการ 4 อย่าง, ตารางราคา, พื้นที่บริการ, ผลงาน/รีวิว, FAQ, ติดต่อ + ฝัง Google Maps
-- ✅ มี `<h1>` เดียว และ `<h2>` ประจำแต่ละ section
-- ✅ SEO Title + Meta Description + canonical + Open Graph
-- ✅ ปุ่มโทร `tel:0863704378` / ปุ่ม Line / ปุ่ม Maps — วาง CTA 4 จุด (บนสุด, หลังบริการ, หลังราคา, ล่างสุด)
+## สิ่งที่ทำไว้ให้แล้ว (โครงสร้างเว็บพร้อมแล้ว)
+- ✅ One page ครบทุก section: Hero (มีปุ่มโทร/Line/Maps ทันที), ข้อมูลร้าน, จุดขาย 6 ข้อ, **บริการติดฟิล์มรถยนต์** (3 บริการ), **บริการติดฟิล์มบ้าน/คอนโด/อาคาร/สำนักงาน/ร้านค้า** (section หลักแยกเฉพาะ พร้อม CTA และ FAQ ของตัวเอง), ตารางราคา 2 แพ็กเกจ (รถยนต์ + อาคาร), พื้นที่บริการ, ผลงาน/รีวิว, FAQ, ติดต่อ + ฝัง Google Maps
+- ✅ มี `<h1>` เดียวที่มีคำว่า "ใกล้ฉัน" + `<h2>` ประจำแต่ละ section
+- ✅ SEO Title (มีคำว่า "ใกล้ฉัน") + Meta Description + canonical + Open Graph
+- ✅ ปุ่มโทร `tel:0863704378` / ปุ่ม Line / ปุ่ม Maps ครบทุก section สำคัญ (hero, บริการรถยนต์, บริการอาคาร, ราคา, ติดต่อ, footer)
 - ✅ Sticky bar ปุ่ม โทร/Line/แผนที่ บนมือถือ
 - ✅ Responsive 100% มือถือ เดสก์ท็อป
-- ✅ LocalBusiness Schema (`AutoRepair`) + FAQPage Schema (JSON-LD)
+- ✅ LocalBusiness Schema (`AutoRepair`) + `hasOfferCatalog` + FAQPage Schema (JSON-LD ทั้งหมด valid)
 - ✅ ข้อมูลร้าน ชื่อ/ที่อยู่/เบอร์/เวลาเปิด เป็น "ตัวหนังสือจริง" (ไม่ฝังในรูป)
 - ✅ ทุกรูปมี `alt` text และชื่อไฟล์แบบ SEO
-- ✅ robots.txt + sitemap.xml
+- ✅ robots.txt + sitemap.xml + llms.txt
+- ✅ GA4 click-tracking scaffold (`data-ga-event`) พร้อม event: call_click, line_click, maps_click, sticky_call_click, sticky_line_click, sticky_maps_click, car_price_request, glass_photo_request, review_click — ทำงานทันทีที่ใส่ Measurement ID จริง
 - ✅ ไม่มีหลังบ้าน ไม่มี framework หนัก โหลดเร็ว
+
+> สรุป: **โครงสร้างเว็บไซต์พร้อมแล้ว เหลือเติมข้อมูลจริงเพื่อใช้งาน Production** (ดูหัวข้อถัดไป)
 
 ## ⚠️ ต้องแก้ก่อนปล่อยจริง (ค่า placeholder)
 แก้ใน `index.html` (และไฟล์ SEO) ให้ตรงของจริง:
