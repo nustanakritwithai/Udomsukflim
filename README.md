@@ -3,6 +3,11 @@
 เว็บไซต์หน้าเดียว (One Page Local SEO Landing Page) สำหรับร้าน **อุดมสุขฟิล์มศรีนครินทร์53**
 เป้าหมายเดียว: ให้ลูกค้าค้นเจอจาก Google แล้วกด **โทร / ทัก Line / เปิดแผนที่** มาที่ร้าน
 
+## 🚀 Deploy คลิกเดียว
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nustanakritwithai/Udomsukflim)
+
+กดปุ่มด้านบน → ล็อกอิน Render → กด **Apply** (Render จะอ่าน `render.yaml` เอง) เสร็จได้ URL `https://udomsukfilm53.onrender.com` พร้อม HTTPS อัตโนมัติ
+
 ## โครงสร้างไฟล์
 ```
 index.html        ← หน้าเว็บทั้งหมด (HTML + CSS + JS เล็กน้อย ในไฟล์เดียว)
